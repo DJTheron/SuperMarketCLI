@@ -207,6 +207,18 @@
     margin: 0 0 24px;
   }
 
+  .hint {
+    margin: 16px 0 0;
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .hint code {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -337,6 +349,7 @@
         <div class="fade"></div>
         <button class="copy-btn" onclick="copyInstall(this)">Copy</button>
       </div>
+      <p class="hint">After installation run <code>supermarketcli --help</code> to see all commands.</p>
     </header>
 
     <section>
