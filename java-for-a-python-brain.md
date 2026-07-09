@@ -14,17 +14,11 @@ Work through it at the keyboard. Reading about Java teaches you nothing; typing 
 
 You need two things: a **JDK** (the thing that turns your Java into a running program) and an **editor** to write in.
 
-**1. Install the JDK.**
-Go to [adoptium.net](https://adoptium.net) and download the latest **LTS** (Long-Term Support) release of Eclipse Temurin for your operating system. It's free, no account needed. "JDK" stands for Java Development Kit — it includes the compiler (`javac`) and the runtime (`java`).
-
 > **Python comparison:** In Python you installed *one* thing, `python`, that both reads and runs your code. Java splits that into two jobs — a compiler and a runtime — and the JDK gives you both. You'll see why in Module 1.
 
-**2. Pick an editor.**
-- **Best for learning:** [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/) — free, and it holds your hand in the nicest way (autocomplete, red squiggles under mistakes, one-click run).
-- **If you want to match your dad's setup:** VS Code + the "Extension Pack for Java" works well too.
-- **At school:** your teacher may standardise on something like BlueJ or NetBeans. That's fine — the *language* is identical, only the buttons move around.
-
-Install the JDK first, then IntelliJ. When IntelliJ asks which JDK to use, point it at the Temurin one you installed.
+**1. Pick an editor.**
+- **Best for learning:** [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/) — free, and it holds your hand in the nicest way (autocomplete, red squiggles under mistakes, one-click run), also installed JDK for you.
+- **At schools:** teachers may standardise on something like BlueJ or NetBeans. That's fine — the *language* is identical, only the buttons move around.
 
 ---
 
