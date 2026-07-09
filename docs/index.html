@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SuperMarketCLI</title>
-<meta name="description" content="A terminal grocery cart. List products, build a cart, check out — all from the command line." />
+<meta name="description" content="A terminal supermarket I built to learn the basics of Java." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -129,33 +129,57 @@
   }
 
   .install-box {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 12px;
     max-width: 560px;
     margin: 0 auto;
     background: var(--code-bg);
     color: var(--code-text);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-md);
-    padding: 16px 20px;
+    padding: 16px 88px 16px 20px;
     box-shadow: var(--shadow);
     text-align: left;
+  }
+
+  .install-box .scroll {
     overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .install-box .scroll::-webkit-scrollbar {
+    display: none;
   }
 
   .install-box code {
-    flex: 1;
+    display: block;
+    width: max-content;
     font-size: 14px;
     white-space: nowrap;
   }
 
   .install-box .prompt {
-    color: var(--accent);
+    color: #3ddc97;
     margin-right: 4px;
   }
 
+  .install-box .fade {
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    right: 68px;
+    width: 32px;
+    background: linear-gradient(to right, transparent, var(--code-bg));
+    pointer-events: none;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
   .copy-btn {
-    flex-shrink: 0;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
     background: var(--accent);
     color: var(--accent-text);
     border: none;
@@ -265,54 +289,84 @@
     text-decoration: none;
   }
 
+  .gh-corner {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    box-shadow: var(--shadow);
+    transition: transform 0.15s ease;
+    z-index: 10;
+  }
+
+  .gh-corner:hover {
+    transform: translateY(-2px);
+  }
+
+  .gh-corner svg {
+    width: 20px;
+    height: 20px;
+  }
+
   @media (max-width: 620px) {
     .grid, .downloads { grid-template-columns: 1fr; }
-    .install-box { flex-direction: column; align-items: stretch; }
-    .install-box code { white-space: normal; word-break: break-all; }
   }
 </style>
 </head>
 <body>
+  <a class="gh-corner" href="https://github.com/DJTheron/SuperMarketCLI" target="_blank" rel="noopener" aria-label="View source on GitHub">
+    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+  </a>
   <div class="wrap">
     <header class="hero">
-      <div class="badge"><span class="dot"></span> open source · terminal-first</div>
-      <h1>Grocery shopping,<br /><span>from your terminal.</span></h1>
-      <p class="tagline">SuperMarketCLI is a command-line grocery cart — browse products, build a cart, check out. No app, no tabs, just flags.</p>
+      <h1>Simulated groceries,<br /><span>in your terminal.</span></h1>
+      <p class="tagline">SuperMarketCLI is a terminal supermarket I built to learn the basics of Java.</p>
 
       <div class="install-box">
-        <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/DJTheron/SuperMarketCLI/main/install.sh | sh</code>
+        <div class="scroll">
+          <code><span class="prompt">$</span>curl -fsSL https://raw.githubusercontent.com/DJTheron/SuperMarketCLI/main/install.sh | sh</code>
+        </div>
+        <div class="fade"></div>
         <button class="copy-btn" onclick="copyInstall(this)">Copy</button>
       </div>
     </header>
 
     <section>
-      <p class="section-title">Commands</p>
+      <p class="section-title">Flags</p>
       <div class="grid">
         <div class="card">
           <span class="flag">-l, --list</span>
-          <h3>Browse products</h3>
-          <p>List every product available, with shorthand name and price.</p>
+          <h3>Browse available products</h3>
+          <p>Lists all available products -> short-product-name, name, price</p>
         </div>
         <div class="card">
           <span class="flag">-p, --product</span>
-          <h3>Look up a product</h3>
-          <p>Get details on a single item by its shorthand name.</p>
+          <h3>Look up specifics</h3>
+          <p>Returns all product information</p>
         </div>
         <div class="card">
-          <span class="flag">-c, --cart</span>
-          <h3>Manage your cart</h3>
-          <p>add, remove, clear, or view — build your cart one flag at a time.</p>
+          <span class="flag">-c, --cart Actions[add, remove, view, clear] short-product-name quantity</span>
+          <h3>Put stuff in your cart</h3>
+          <p>add, remove, view and clear items in your cart</p>
         </div>
         <div class="card">
-          <span class="flag">-ch, --checkout</span>
-          <h3>Check out</h3>
-          <p>Purchase everything in your cart and clear it for next time.</p>
+          <span class="flag">-c, --cart ch/checkout</span>
+          <h3>Checkout with fake money (more satisfaction to be added at some point in time very far from here)</h3>
+          <p>Purchases and clears cart.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <p class="section-title">Manual downloads</p>
+      <p class="section-title">Manual downloads (guys trust me this is not fun, just use the bash script)</p>
       <div class="downloads">
         <a class="download-card" href="https://github.com/DJTheron/SuperMarketCLI/releases/latest/download/SuperMarketCLI-macos.zip">
           <div class="os">macOS</div>
@@ -330,7 +384,7 @@
     </section>
 
     <footer>
-      Built in the open on <a href="https://github.com/DJTheron/SuperMarketCLI">GitHub</a>.
+      opensource on <a href="https://github.com/DJTheron/SuperMarketCLI">GitHub</a>.
     </footer>
   </div>
 
