@@ -6,7 +6,7 @@ set -euo pipefail
 
 REPO="DJTheron/SuperMarketCLI"
 INSTALL_DIR="/usr/local/lib/supermarketcli"
-BIN_LINK="/usr/local/bin/supermarket"
+BIN_LINK="/usr/local/bin/supermarketcli"
 
 os="$(uname -s)"
 case "$os" in
@@ -64,4 +64,4 @@ sudo ln -sf "$INSTALL_DIR/$binary_path" "$BIN_LINK"
 
 echo ""
 echo "Installed! Try:"
-echo "  supermarket -h"
+echo "  supermarketcli -h"
