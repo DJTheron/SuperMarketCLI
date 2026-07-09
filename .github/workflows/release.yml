@@ -12,11 +12,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            installer-type: deb
+            installer-type: app-image
           - os: windows-latest
             installer-type: msi
           - os: macos-latest
-            installer-type: dmg
+            installer-type: app-image
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -25,10 +25,6 @@ jobs:
         with:
           distribution: temurin
           java-version: "25"
-
-      - name: Linux installer dependencies
-        if: matrix.os == 'ubuntu-latest'
-        run: sudo apt-get update && sudo apt-get install -y fakeroot
 
       - name: Windows installer dependencies
         if: matrix.os == 'windows-latest'
@@ -56,6 +52,26 @@ jobs:
             --app-version "$APP_VERSION" \
             --vendor "DJTheron" \
             --dest build/dist
+
+      - name: Zip macOS app bundle
+        if: matrix.os == 'macos-latest'
+        working-directory: build/dist
+        run: |
+          zip -r -y SuperMarketCLI-macos.zip SuperMarketCLI.app
+          rm -rf SuperMarketCLI.app
+
+      - name: Zip Linux app image
+        if: matrix.os == 'ubuntu-latest'
+        working-directory: build/dist
+        run: |
+          zip -r SuperMarketCLI-linux.zip SuperMarketCLI
+          rm -rf SuperMarketCLI
+
+      - name: Rename Windows installer
+        if: matrix.os == 'windows-latest'
+        working-directory: build/dist
+        shell: bash
+        run: mv SuperMarketCLI-*.msi SuperMarketCLI-windows.msi
 
       - uses: actions/upload-artifact@v4
         with:
