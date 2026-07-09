@@ -31,7 +31,8 @@ public class SuperMarket {
                     System.out.println("Super Market CLI");
                     System.out.println("-l/--list\t\t\t\t\t\t\t\t\t\t\t: Lists all available products -> short-product-name, name, price");
                     System.out.println("-p/--product short-product-name\t\t\t\t\t\t\t\t\t: Returns product information");
-                    System.out.println("-c/--cart Action[add, remove, clear, view, checkout] short-product-name quantity-to-purchase\t\t: Adds product in selected quantity to the cart, if quantity not specified then one product added"); // add proper description/ help page notation/ structure
+                    System.out.println("-c/--cart Action[add, remove, clear, view, checkout] short-product-name quantity-to-purchase\t\t: Adds" +
+                            " product in selected quantity to the cart, if quantity not specified then one product added"); // add proper description/ help page notation/ structure
                 }
                 case "-l", "--list" -> {
                     System.out.println("Super Market CLI");
